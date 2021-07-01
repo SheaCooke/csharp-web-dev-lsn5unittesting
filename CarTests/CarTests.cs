@@ -40,24 +40,18 @@ namespace CarTests
         }
         //TODO: gasTankLevel is accurate after driving within tank range
         [TestMethod]
-        public void GasTankLevelWithinTankRange()
+        public void GasTankLevelAccurateWithinTankRange()
         {
-         
-
-            double totalRange = 1350;
-
             car1.Drive(50);
-            
-            Assert.AreEqual(1300, car1.GasTankLevel, .1);
+            Assert.IsTrue(car1.GasTankLevel > 0);
         }
+
         //TODO: gasTankLevel is accurate after attempting to drive past tank range
         [TestMethod]
-        public void GasTankLevelPastRange()
+        public void GasTankLevelAccuratePastRange()
         {
-           
-            double totalRange = car1.GasTankSize * car1.MilesPerGallon;
-
-            Assert.IsTrue(totalRange < 1400);
+            car1.Drive(2000);
+            Assert.IsTrue(car1.GasTankLevel <= 0);
         }
         //TODO: can't have more gas than tank size, expect an exception
         [TestMethod]
